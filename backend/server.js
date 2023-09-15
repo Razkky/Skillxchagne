@@ -59,3 +59,5 @@ dbClient.connect()
 
 
 logger.info('Server setup complete.');
+
+module.exports = app;
