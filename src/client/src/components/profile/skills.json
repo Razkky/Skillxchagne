@@ -1,0 +1,365 @@
+{
+    "categories": [
+      {
+        "category_name": "Programming",
+        "skills": [
+          "Python",
+          "Java",
+          "JavaScript",
+          "C++",
+          "Ruby",
+          "PHP",
+          "Swift",
+          "Kotlin",
+          "Rust",
+          "Go",
+          "SQL",
+          "C#",
+          "Scala",
+          "Perl"
+        ]
+      },
+      {
+        "category_name": "Web Development",
+        "skills": [
+          "HTML/CSS",
+          "React.js",
+          "Node.js",
+          "Angular",
+          "Vue.js",
+          "Django",
+          "Ruby on Rails",
+          "ASP.NET",
+          "Express.js",
+          "Bootstrap",
+          "Sass",
+          "TypeScript",
+          "Webpack",
+          "Flask"
+        ]
+      },
+      {
+        "category_name": "Data Science",
+        "skills": [
+          "Machine Learning",
+          "Data Analysis",
+          "Statistics",
+          "Deep Learning",
+          "Natural Language Processing",
+          "Big Data",
+          "Data Visualization",
+          "Hadoop",
+          "Spark",
+          "Tableau",
+          "Pandas",
+          "NumPy",
+          "Scikit-Learn",
+          "Matplotlib"
+        ]
+      },
+      {
+        "category_name": "Design",
+        "skills": [
+          "Graphic Design",
+          "UI/UX Design",
+          "Adobe Photoshop",
+          "Illustrator",
+          "InDesign",
+          "Sketch",
+          "Figma",
+          "Adobe XD",
+          "Typography",
+          "Color Theory",
+          "Logo Design",
+          "Motion Graphics",
+          "Responsive Design",
+          "User Testing"
+        ]
+      },
+      {
+        "category_name": "Marketing",
+        "skills": [
+          "Social Media Marketing",
+          "Content Marketing",
+          "Search Engine Optimization (SEO)",
+          "Email Marketing",
+          "Google Ads",
+          "Facebook Ads",
+          "Copywriting",
+          "Brand Management",
+          "Influencer Marketing",
+          "Analytics",
+          "Market Research",
+          "Public Relations",
+          "Video Marketing",
+          "Conversion Rate Optimization"
+        ]
+      },
+      {
+        "category_name": "Finance",
+        "skills": [
+          "Financial Analysis",
+          "Investment Banking",
+          "Budgeting",
+          "Financial Planning",
+          "Stock Market Analysis",
+          "Risk Management",
+          "Asset Management",
+          "Taxation",
+          "Financial Modeling",
+          "Corporate Finance",
+          "Personal Finance",
+          "Auditing",
+          "Economics",
+          "Financial Reporting"
+        ]
+      },
+      {
+        "category_name": "Languages",
+        "skills": [
+          "Spanish",
+          "French",
+          "Mandarin Chinese",
+          "German",
+          "Japanese",
+          "Russian",
+          "Arabic",
+          "Italian",
+          "Portuguese",
+          "Dutch",
+          "Korean",
+          "Swedish",
+          "Hebrew",
+          "Greek"
+        ]
+      },
+      {
+        "category_name": "Project Management",
+        "skills": [
+          "Agile Methodology",
+          "Scrum",
+          "Project Planning",
+          "Risk Assessment",
+          "Resource Management",
+          "Stakeholder Communication",
+          "Quality Assurance",
+          "Team Leadership",
+          "Budget Management",
+          "Time Management",
+          "Conflict Resolution",
+          "Agenda Setting",
+          "Scope Definition",
+          "Gantt Chart"
+        ]
+      },
+      {
+        "category_name": "Healthcare",
+        "skills": [
+          "Medical Coding",
+          "Nursing",
+          "Pharmacy",
+          "Emergency Medicine",
+          "Physical Therapy",
+          "Radiology",
+          "Medical Research",
+          "Patient Care",
+          "Health Informatics",
+          "Epidemiology",
+          "Health Administration",
+          "Mental Health Counseling",
+          "Dental Hygiene",
+          "Surgical Technology"
+        ]
+      },
+      {
+        "category_name": "Culinary",
+        "skills": [
+          "Cooking Techniques",
+          "Baking",
+          "Sushi Making",
+          "Pastry Arts",
+          "Culinary Nutrition",
+          "Food Safety",
+          "Menu Planning",
+          "Gourmet Cuisine",
+          "Food Photography",
+          "Wine Tasting",
+          "Catering",
+          "Knife Skills",
+          "Fusion Cuisine",
+          "Sous Vide Cooking"
+        ]
+      },
+      {
+        "category_name": "Music",
+        "skills": [
+          "Guitar Playing",
+          "Piano",
+          "Singing",
+          "Music Composition",
+          "Music Production",
+          "Music Theory",
+          "Music History",
+          "Drumming",
+          "Violin",
+          "Music Recording",
+          "Songwriting",
+          "Music Arrangement",
+          "Music Education",
+          "Music Therapy"
+        ]
+      },
+      {
+        "category_name": "Sports",
+        "skills": [
+          "Basketball",
+          "Yoga",
+          "Swimming",
+          "Soccer",
+          "Tennis",
+          "Golf",
+          "Martial Arts",
+          "Cycling",
+          "Running",
+          "Strength Training",
+          "Pilates",
+          "Dancing",
+          "Boxing",
+          "Snowboarding"
+        ]
+      },
+      {
+        "category_name": "Science",
+        "skills": [
+          "Biology",
+          "Chemistry",
+          "Physics",
+          "Astronomy",
+          "Geology",
+          "Environmental Science",
+          "Genetics",
+          "Microbiology",
+          "Neuroscience",
+          "Quantum Mechanics",
+          "Astrophysics",
+          "Oceanography",
+          "Botany",
+          "Ecology"
+        ]
+      },
+      {
+        "category_name": "Education",
+        "skills": [
+          "Online Teaching",
+          "Curriculum Design",
+          "Special Education",
+          "Educational Technology",
+          "Classroom Management",
+          "Assessment and Evaluation",
+          "Adult Education",
+          "Early Childhood Education",
+          "Educational Psychology",
+          "Teaching English as a Second Language (ESL)",
+          "Student Counseling",
+          "E-Learning",
+          "Education Policy",
+          "Educational Research"
+        ]
+      },
+      {
+        "category_name": "Art",
+        "skills": [
+          "Oil Painting",
+          "Sculpture",
+          "Digital Art",
+          "Watercolor Painting",
+          "Printmaking",
+          "Ceramics",
+          "Photography",
+          "Mixed Media",
+          "Illustration",
+          "Glassblowing",
+          "Collage",
+          "Art History",
+          "Art Restoration",
+          "Art Therapy"
+        ]
+      },
+      {
+        "category_name": "Engineering",
+        "skills": [
+          "Mechanical Engineering",
+          "Electrical Engineering",
+          "Civil Engineering",
+          "Chemical Engineering",
+          "Software Engineering",
+          "Aerospace Engineering",
+          "Biomedical Engineering",
+          "Environmental Engineering",
+          "Materials Engineering",
+          "Industrial Engineering",
+          "Automotive Engineering",
+          "Structural Engineering",
+          "Robotics",
+          "Nanotechnology"
+        ]
+      },
+      {
+        "category_name": "Writing",
+        "skills": [
+          "Creative Writing",
+          "Technical Writing",
+          "Copywriting",
+          "Blogging",
+          "Fiction Writing",
+          "Non-fiction Writing",
+          "Screenwriting",
+          "Journalism",
+          "Grant Writing",
+          "Editing",
+          "Scriptwriting",
+          "Business Writing",
+          "Academic Writing",
+          "Poetry Writing"
+        ]
+      },
+      {
+        "category_name": "Sales",
+        "skills": [
+          "Negotiation",
+          "Customer Relationship Management (CRM)",
+          "Prospecting",
+          "Sales Strategy",
+          "Sales Presentation",
+          "Cold Calling",
+          "Sales Analytics",
+          "Sales Training",
+          "Account Management",
+          "Closing Sales",
+          "Consultative Selling",
+          "Sales Forecasting",
+          "Inbound Sales",
+          "Outbound Sales"
+        ]
+      },
+      {
+        "category_name": "Cybersecurity",
+        "skills": [
+          "Network Security",
+          "Ethical Hacking",
+          "Information Security",
+          "Penetration Testing",
+          "Cyber Threat Intelligence",
+          "Incident Response",
+          "Security Auditing",
+          "Security Compliance",
+          "Cryptography",
+          "Security Architecture",
+          "Wireless Security",
+          "Web Application Security",
+          "Malware Analysis",
+          "Security Policies and Procedures"
+        ]
+      }
+    ]
+  }

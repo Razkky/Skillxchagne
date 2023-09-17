@@ -20,7 +20,9 @@ router.post('/api/login', [
 ], Login);
 
 router.put('/api/user/update', authenticateUser, updateUser);
+logger.info('User-related routes registered');
 router.get('/api/user/', authenticateUser, getUser);
+logger.info('User-related routes registered');
 
 // Skill-related routes
 router.post('/api/skill/add', authenticateUser, [

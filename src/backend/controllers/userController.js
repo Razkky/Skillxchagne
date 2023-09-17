@@ -135,18 +135,39 @@ class UserController {
       
 
     // 6. Update User Profile
-    static async updateUserProfile(email, profileData) {
-        try {
-            const user = await User.findOneAndUpdate(
-                { email },
-                { $set: { 'profile': profileData } },
-                { new: true }
-            );
-            return user;
-        } catch (error) {
-            throw new Error(`Error updating user profile: ${error}`);
+ // 6. Update User Profile - Update skills lists
+static async updateUserProfile(email, skillsToTeach, skillsToLearn) {
+    try {
+        const existingUser = await User.findOne({ email });
+        if (!existingUser) {
+            throw new Error('User not found');
         }
+
+        // Merge the existing skills lists with the new skills
+        const updatedSkillsToTeach = [...existingUser.profile.skillsToTeach, ...skillsToTeach];
+        const updatedSkillsToLearn = [...existingUser.profile.skillsToLearn, ...skillsToLearn];
+
+        // Remove duplicates from the updated skills lists
+        const uniqueSkillsToTeach = Array.from(new Set(updatedSkillsToTeach));
+        const uniqueSkillsToLearn = Array.from(new Set(updatedSkillsToLearn));
+
+        // Update the user's profile with the updated skills lists
+        const user = await User.findOneAndUpdate(
+            { email },
+            {
+                $set: {
+                    'profile.skillsToTeach': uniqueSkillsToTeach,
+                    'profile.skillsToLearn': uniqueSkillsToLearn
+                }
+            },
+            { new: true }
+        );
+
+        return user;
+    } catch (error) {
+        throw new Error(`Error updating user profile: ${error}`);
     }
+}
 
     // 7. Add Review Reference to User
     static async addReviewToUser(username, reviewId) {

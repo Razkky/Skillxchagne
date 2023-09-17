@@ -1,12 +1,14 @@
 
 import React, { useState, useEffect } from 'react';
-import SkillsController from '../skills/skills';
+import SkillsComponent from './skillsgame';
 import { FaBook, FaChalkboardTeacher } from 'react-icons/fa'; // Import icons for skills
 
 const REACT_APP_BASE_URL = process.env.REACT_APP_BASE_URL;
 
 async function getUserProfile() {
+  console.log('Getting user profile');
   const token = localStorage.getItem('authToken');
+  console.log('Token', token);
   if (!token) {
     console.error('No token found');
     return null;
@@ -19,6 +21,7 @@ async function getUserProfile() {
     }
   });
 
+  console.log('Response', response);
   if (response.status === 401) {
     console.error('Unauthorized');
     return null;
@@ -54,7 +57,10 @@ function UserProfile() {
   }, []);
 
   return (
-    <div className="shadow-md rounded px-8 pt-6 pb-8 mb-4">
+
+   
+<div
+     className="shadow-md rounded px-8 pt-6 pb-8 mb-4">
       {loading ? (
         <p className="text-center">Loading user profile...</p>
       ) : userProfile ? (
@@ -72,15 +78,15 @@ function UserProfile() {
               <FaBook className="text-blue-500 mr-2" /> {/* Book icon */}
               <span className="font-semibold">Skills to Learn:</span>
             </div>
-            <SkillsController skills={userProfile.skillsToLearn} /> {/* Pass skills data */}
           </div>
           <div>
             <div className="flex items-center mb-2">
               <FaChalkboardTeacher className="text-green-500 mr-2" /> {/* Teacher icon */}
               <span className="font-semibold">Skills to Teach:</span>
             </div>
-            <SkillsController skills={userProfile.skillsToTeach} /> {/* Pass skills data */}
-          </div>
+            </div>
+
+            <SkillsComponent />
         </div>
       ) : (
         <p className="text-center">No user profile data available.</p>

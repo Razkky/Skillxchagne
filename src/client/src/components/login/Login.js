@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../firebase';
 import { NavLink, useNavigate } from 'react-router-dom';
-
 function Login() {
   const REACT_APP_LOGIN_URL = process.env.REACT_APP_LOGIN_URL;
   const navigate = useNavigate();

@@ -3,38 +3,38 @@ html, body {
   margin: 0;
   padding: 0;
   font-size: 16px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Arial', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Apply a global box-sizing rule for consistent layout calculations */
+/* Global box-sizing */
 *, *::before, *::after {
   box-sizing: border-box;
 }
 
 /* Global text selection styling */
 ::selection {
-  background-color: #3182ce;
+  background-color: #6b5b95;
   color: #ffffff;
 }
 
-/* Define custom colors for consistent use throughout the app */
+/* Custom Colors */
 :root {
-  --primary-color: #f7fafc;
-  --secondary-color: #0D2363;
-  --accent-color: #38a169;
-  --text-color: #000;
-  --background-color: #f7fafc;
+  --primary-color: #4a90e2;
+  --secondary-color: #d0342d;
+  --accent-color: #8e44ad;
+  --text-color: #2c3e50;
+  --background-color: #ecf0f1;
 }
 
-/* Apply a global background color and text color */
+/* Global Background and Text Color */
 body {
   background-color: var(--background-color);
   color: var(--text-color);
 }
 
-/* Apply a gradient text color effect for headings */
+/* Headings */
 h1, h2, h3, h4, h5, h6 {
   background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
   -webkit-background-clip: text;
@@ -42,7 +42,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
 }
 
-/* Style links to match the header */
+/* Links */
 a {
   color: var(--primary-color);
   text-decoration: none;
@@ -53,17 +53,17 @@ a:hover {
   color: var(--secondary-color);
 }
 
-/* Apply consistent padding to sections */
+/* Sections */
 .section {
   padding: 2rem;
 }
 
-/* Style buttons */
+/* Buttons */
 .button {
   display: inline-block;
   padding: 0.75rem 1.5rem;
   background-color: var(--primary-color);
-  color: white;
+  color: #ffffff;
   border-radius: 0.25rem;
   font-weight: bold;
   text-align: center;
@@ -75,7 +75,7 @@ a:hover {
   background-color: var(--secondary-color);
 }
 
-/* Apply responsive typography */
+/* Responsive Typography */
 @media screen and (max-width: 768px) {
   body {
     font-size: 14px;

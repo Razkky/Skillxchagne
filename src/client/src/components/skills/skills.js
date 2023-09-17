@@ -1,46 +1,66 @@
-// SkillsController.js
 import React, { useState, useEffect } from 'react';
+import * as SkillsAPI from './SkillsAPI';
 
 const SkillsController = () => {
-  const [skills, setSkills] = useState([]);
+  const [skillsToTeach, setSkillsToTeach] = useState([]);
+  const [skillsToLearn, setSkillsToLearn] = useState([]);
   const [newSkill, setNewSkill] = useState('');
+  const [skillCategory, setSkillCategory] = useState('');
+  const authToken = localStorage.getItem('authToken');
 
-  // Fetch skills from the server or local storage
-  useEffect(() => {
-    // Replace this with API call to fetch user skills
-    const storedSkills = localStorage.getItem('userSkills');
-    if (storedSkills) {
-      setSkills(JSON.parse(storedSkills));
-    }
-  }, []);
-
-  const addSkill = () => {
-    if (newSkill) {
-      const updatedSkills = [...skills, newSkill];
-      setSkills(updatedSkills);
-
-      // Replace this with API call to update user skills
-      localStorage.setItem('userSkills', JSON.stringify(updatedSkills));
-
-      setNewSkill('');
+  const syncSkills = async () => {
+    try {
+      const data = await SkillsAPI.fetchSkills(authToken);
+      setSkillsToTeach(data.skillsToTeach);
+      setSkillsToLearn(data.skillsToLearn);
+    } catch (error) {
+      console.error('Error syncing user skills:', error);
     }
   };
 
-  const deleteSkill = (index) => {
-    const updatedSkills = skills.filter((_, i) => i !== index);
-    setSkills(updatedSkills);
+  useEffect(() => {
+    syncSkills();
+  }, [authToken]);
 
-    // Replace this with API call to update user skills
-    localStorage.setItem('userSkills', JSON.stringify(updatedSkills));
+  const addSkillToServer = async (type) => {
+    try {
+      const data = await SkillsAPI.addSkill(authToken, newSkill, skillCategory);
+      const updatedSkills = type === 'toTeach' ? [...skillsToTeach, data._id] : [...skillsToLearn, data._id];
+      await SkillsAPI.updateSkills(authToken, updatedSkills, type);
+      syncSkills();
+      setNewSkill('');
+      setSkillCategory('');
+    } catch (error) {
+      console.error('Error adding skill:', error);
+    }
+  };
+
+  const deleteSkillFromServer = async (skillId, type) => {
+    try {
+      await SkillsAPI.deleteSkill(authToken, skillId);
+      const updatedSkills = (type === 'toTeach' ? skillsToTeach : skillsToLearn).filter(id => id !== skillId);
+      await SkillsAPI.updateSkills(authToken, updatedSkills, type);
+      syncSkills();
+    } catch (error) {
+      console.error('Error deleting skill:', error);
+    }
   };
 
   return (
     <div>
-      <h3>Your Skills</h3>
+      <h3>Your Skills to Teach</h3>
       <ul>
-        {skills.map((skill, index) => (
+        {skillsToTeach.map((skillId, index) => (
           <li key={index}>
-            {skill} <button onClick={() => deleteSkill(index)}>Delete</button>
+            {skillId} <button onClick={() => deleteSkillFromServer(skillId, 'toTeach')}>Delete</button>
+          </li>
+        ))}
+      </ul>
+      <h3>Your Skills to Learn</h3>
+      <ul>
+        {skillsToLearn.map((skillId, index) => (
+          <li key={index}>
+            {skillId} <button onClick={() => deleteSkillFromServer(skillId, 'toLearn')}>Delete</button>
           </li>
         ))}
       </ul>
@@ -50,7 +70,14 @@ const SkillsController = () => {
         onChange={(e) => setNewSkill(e.target.value)}
         placeholder="New Skill"
       />
-      <button onClick={addSkill}>Add Skill</button>
+      <input
+        type="text"
+        value={skillCategory}
+        onChange={(e) => setSkillCategory(e.target.value)}
+        placeholder="Category"
+      />
+      <button onClick={() => addSkillToServer('toTeach')}>Add Skill to Teach</button>
+      <button onClick={() => addSkillToServer('toLearn')}>Add Skill to Learn</button>
     </div>
   );
 };

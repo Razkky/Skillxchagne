@@ -62,16 +62,19 @@ const getUser = async (req, res) => {
   try {
     // User data is available in req.user due to the `authenticateUser` middleware
     const user = req.user;
+    logger.info('User', user);
     // Fetch the user profile based on the user data
     const userProfile = await userController.findUserByEmail(user.email);
     if (userProfile) {
+      logger.info('User profile', userProfile);
       // Return the user profile as JSON
       return res.status(200).json(userProfile);
     } else {
+      logger.info('User profile not found');
       return res.status(404).json({ message: 'User profile not found' });
     }
   } catch (err) {
-    console.error('Error fetching user profile:', err);
+    logger.error('Error fetching user profile:', err);
     res.status(500).json({ message: 'Internal server error' });
   }
 };
@@ -79,16 +82,28 @@ const getUser = async (req, res) => {
 // Update a user profile
 const updateUser = async (req, res) => {
   try {
-    userEmail = req.user.email;
-    user = await userController.findUserByEmail(userEmail);
-    // logger.info('Old user', user);
-    newUser = await userController.updateUserProfile(userEmail, req.body)
-    // logger.info('new User', newUser);
+    const userEmail = req.user.email;
+    logger.info('User email', userEmail);
+    const user = await userController.findUserByEmail(userEmail);
+    logger.info('User', user);
+    logger.info('Request body', req.body);
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    const skillsToTeach = req.body.skillsToTeach || [];
+    logger.info('Skills to teach', skillsToTeach);
+    const skillsToLearn = req.body.skillsToLearn || [];
+    logger.info('Skills to learn', skillsToLearn);
+    const newUser = await userController.updateUserProfile(userEmail, skillsToTeach, skillsToLearn);
+    logger.info('New user', newUser);
     return res.status(200).json(newUser);
-  } catch(error) {
+  } catch (error) {
+    console.error(error);
     res.status(500).json({ message: 'Internal server error' });
   }
 }
+
 const addSkill = async (req, res) => {
   try {
     const errors = validationResult(req);
