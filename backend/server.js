@@ -51,6 +51,7 @@ dbClient.connect()
   .then(() => {
     app.listen(port, () => {
     logger.info(`App started. Server is running on port ${port}`);
+    logger.info('Server setup complete.');
     });
   })
   .catch((error) => {
@@ -58,6 +59,5 @@ dbClient.connect()
   })
 
 
-logger.info('Server setup complete.');
 
 module.exports = app;

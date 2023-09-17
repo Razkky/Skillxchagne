@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import SkillsController from './SkillsController'; // Import the SkillsController
+// import SkillsController from './SkillsController'; // Import the SkillsController
 
 async function getUserProfile() {
   const token = localStorage.getItem('authToken');
@@ -57,7 +57,6 @@ function UserProfile() {
           <h2>User Profile</h2>
           <p>Full Name: {userProfile.fullName}</p>
           <p>Email: {userProfile.email}</p>
-          <SkillsController /> {/* Include the SkillsController */}
           {/* Display other user profile information here */}
         </div>
       ) : (
