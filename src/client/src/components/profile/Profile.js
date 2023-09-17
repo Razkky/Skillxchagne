@@ -1,7 +1,5 @@
-
 import React, { useState, useEffect } from 'react';
 import SkillsComponent from './skillsgame';
-import { FaBook, FaChalkboardTeacher } from 'react-icons/fa'; // Import icons for skills
 
 const REACT_APP_BASE_URL = process.env.REACT_APP_BASE_URL;
 
@@ -41,7 +39,6 @@ async function getUserProfile() {
   }
 }
 
-
 function UserProfile() {
   const [userProfile, setUserProfile] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -57,39 +54,25 @@ function UserProfile() {
   }, []);
 
   return (
-
-   
-<div
-     className="shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <div className="shadow-md rounded-lg px-8 pt-6 pb-8 mb-4 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700
+    text-white">
       {loading ? (
-        <p className="text-center">Loading user profile...</p>
+        <p className="text-center text-gray-100">Loading user profile...</p>
       ) : userProfile ? (
         <div>
-          <h2 className="text-2xl font-bold mb-4">User Profile</h2>
-          <p className="mb-4">
-            <span className="font-semibold">Full Name:</span> {userProfile.profile.fullName}
+          <h2 className="text-2xl font-bold mb-4 text-gray-100">User Profile</h2>
+          <p className="mb-4 text-gray-200">
+            <span className="font-semibold text-gray-100">Full Name:</span> {userProfile.profile.fullName}
           </p>
-          <p className="mb-4">
-            <span className="font-semibold">Email:</span> {userProfile.email}
+          <p className="mb-4 text-gray-200">
+            <span className="font-semibold text-gray-100">Email:</span> {userProfile.email}
           </p>
           <div className="mb-4">
-            <h3 className="text-lg font-semibold">Skills</h3>
-            <div className="flex items-center mb-2">
-              <FaBook className="text-blue-500 mr-2" /> {/* Book icon */}
-              <span className="font-semibold">Skills to Learn:</span>
-            </div>
-          </div>
-          <div>
-            <div className="flex items-center mb-2">
-              <FaChalkboardTeacher className="text-green-500 mr-2" /> {/* Teacher icon */}
-              <span className="font-semibold">Skills to Teach:</span>
-            </div>
-            </div>
-
             <SkillsComponent />
+          </div>
         </div>
       ) : (
-        <p className="text-center">No user profile data available.</p>
+        <p className="text-center text-gray-700">No user profile data available.</p>
       )}
     </div>
   );

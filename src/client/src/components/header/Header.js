@@ -1,11 +1,18 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-function Header() {
+function Header({ isAuthenticated, setIsAuthenticated }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleSignOut = () => {
+    localStorage.removeItem('authToken');
+    setIsAuthenticated(false);
+    navigate('/');
   };
 
   return (
@@ -18,38 +25,35 @@ function Header() {
         className="lg:hidden block"
         onClick={toggleMenu}  
       >
-        <svg
-          className={`h-6 w-6 fill-current text-white ${isMenuOpen ? "hidden" : ""}`}
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path d="M4 6h16v2H4V6zm0 5h16v2H4v-2zm0 5h16v2H4v-2z" />
-        </svg>
-    
-        <svg
-          className={`h-6 w-6 fill-current text-white ${!isMenuOpen ? "hidden" : ""}`}
-          viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path d="M6 18L18 6M6 6l12 12" />
-        </svg>
+        {/* ... (SVG icons code) */}
       </button>
     
       <div
         className={`lg:flex lg:w-auto lg:space-x-8 ${isMenuOpen ? "" : "hidden"}`}
       >
-        <Link
-          to="/login"
-          className="px-4 py-2 text-gray-200 font-medium rounded hover:bg-gray-700 hover:text-white"
-        >
-          Login
-        </Link>
-        <Link
-          to="/signup"
-          className="px-4 py-2 text-gray-200 font-medium rounded hover:bg-gray-700 hover:text-white"
-        > 
-          Sign Up
-        </Link>
+        {!isAuthenticated ? (
+          <>
+            <Link
+              to="/login"
+              className="px-4 py-2 text-gray-200 font-medium rounded hover:bg-gray-700 hover:text-white"
+            >
+              Login
+            </Link>
+            <Link
+              to="/signup"
+              className="px-4 py-2 text-gray-200 font-medium rounded hover:bg-gray-700 hover:text-white"
+            > 
+              Sign Up
+            </Link>
+          </>
+        ) : (
+          <button
+            onClick={handleSignOut}
+            className="px-4 py-2 text-gray-200 font-medium rounded hover:bg-gray-700 hover:text-white"
+          >
+            Sign Out
+          </button>
+        )}
       </div>
     </header>
   );
