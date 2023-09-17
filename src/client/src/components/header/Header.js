@@ -1,9 +1,10 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 function Header({ isAuthenticated, setIsAuthenticated }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -14,6 +15,15 @@ function Header({ isAuthenticated, setIsAuthenticated }) {
     setIsAuthenticated(false);
     navigate('/');
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      setIsAuthenticated(true);
+    } else {
+      setIsAuthenticated(false);
+    }
+  }, [location]);
 
   return (
     <header className="flex items-center justify-between py-4 px-8 bg-gray-800 shadow">

@@ -22,12 +22,13 @@ function App() {
   return (
     <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700 min-h-screen flex flex-col text-white">
       <Router>
-        <Header isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
+      <Header isAuthenticated={isAuthenticated} setIsAuthenticated={setIsAuthenticated} />
         
         <main className="container mx-auto flex flex-col md:flex-row p-4 mt-4">
           <div className="w-full p-4 bg-gradient-to-br from-gray-500 via-gray-800 to-gray-700
           rounded-lg shadow-lg">
             <Routes>
+         
               <Route path="/" element={<Hero />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/signup" element={<SignupPage />} />
