@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import skillsData from './skills.json';
-
+// TODO: adding skills to user profile
 function SkillsComponent() {
   const categories = skillsData.categories;
   const [skillsBalance, setSkillsBalance] = useState({});
@@ -10,7 +10,6 @@ function SkillsComponent() {
   const [maxTeachingPoints] = useState(945); // Set the maximum teaching points
   const [maxLearningPoints] = useState(567); // Set the maximum learning points
   const [powerUpAnimation, setPowerUpAnimation] = useState(false);
-
   useEffect(() => {
     updatePointsAndSkills();
   }, [skillsBalance]);
