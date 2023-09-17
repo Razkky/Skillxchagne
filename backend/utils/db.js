@@ -4,7 +4,7 @@ const User = require('./models/user_schema'); // Assuming you have a User model
 
 class DBClient {
   constructor() {
-    this.db = null;
+    this.db = false;
   }
 
   async connect() {
@@ -30,7 +30,7 @@ class DBClient {
   async disconnect() {
     try {
       await mongoose.disconnect();
-      this.db = null;
+      this.db = false;
       logger.info('Disconnected from the database');
     } catch (error) {
       logger.error('Error disconnecting from the database:', error);
