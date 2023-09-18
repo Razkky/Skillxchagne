@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SkillsComponent from './skillsgame';
 
-const REACT_APP_BASE_URL = process.env.REACT_APP_BASE_URL;
+const NODE_BASE_URL = process.env.NODE_BASE_URL;
 
 async function getUserProfile() {
   console.log('Getting user profile');
@@ -11,15 +11,16 @@ async function getUserProfile() {
     console.error('No token found');
     return null;
   }
+  console.log(`logging url${NODE_BASE_URL}/api/user/`)
 
-  const response = await fetch(`${REACT_APP_BASE_URL}/api/user/`, {
+  const response = await fetch('http://localhost:5001/api/user', {
     method: 'GET',
     headers: {
       'Authorization': `Bearer ${token}`
     }
   });
 
-  console.log('Response', response);
+  console.log('Response gotten', response);
   if (response.status === 401) {
     console.error('Unauthorized');
     return null;
