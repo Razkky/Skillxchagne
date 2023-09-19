@@ -136,38 +136,44 @@ class UserController {
 
     // 6. Update User Profile
  // 6. Update User Profile - Update skills lists
-static async updateUserProfile(email, skillsToTeach, skillsToLearn) {
+ static async updateUserProfile(email, skillsToTeach, skillsToLearn) {
     try {
+        logger.info(`Updating user profile for user with email: ${email}`);
         const existingUser = await User.findOne({ email });
+        logger.info(`Existing user: ${existingUser}`);
         if (!existingUser) {
+            logger.info(`User not found`);
             throw new Error('User not found');
         }
+        logger.info(`Existing user profile: ${existingUser.profile}`);
+        logger.info(`Existing user skillsToTeach: ${existingUser.skillsToTeach}`);
+        logger.info(`Existing user skillsToLearn: ${existingUser.skillsToLearn}`);
+        // Helper function to update skills
+     
+        
+        const updateSkills = (existingSkills, newSkills) => {
+            logger.info(`Updating skills in updateSkills function`);
+            logger.info(`Existing skills: ${existingSkills}`);
+            logger.info(`New skills: ${newSkills}`);
+            const filteredSkills = existingSkills.filter(skill => newSkills.includes(skill)); // Retain skills still selected
+           const addedSkills = newSkills.filter(skill => !existingSkills.includes(skill));  // Find new skills to add
+            return [...filteredSkills, ...addedSkills];                                      // Combine both
+        };
+        logger.info(`Calling updateSkills function for skil to teach`);
+       existingUser.skillsToTeach = updateSkills(existingUser.skillsToTeach, skillsToTeach);
+        logger.info(`Calling updateSkills function for skil to learn`);
+       existingUser.skillsToLearn = updateSkills(existingUser.skillsToLearn, skillsToLearn);
 
-        // Merge the existing skills lists with the new skills
-        const updatedSkillsToTeach = [...existingUser.profile.skillsToTeach, ...skillsToTeach];
-        const updatedSkillsToLearn = [...existingUser.profile.skillsToLearn, ...skillsToLearn];
+        // Save the updated user's profile
+        const updatedUser = await existingUser.save();
 
-        // Remove duplicates from the updated skills lists
-        const uniqueSkillsToTeach = Array.from(new Set(updatedSkillsToTeach));
-        const uniqueSkillsToLearn = Array.from(new Set(updatedSkillsToLearn));
-
-        // Update the user's profile with the updated skills lists
-        const user = await User.findOneAndUpdate(
-            { email },
-            {
-                $set: {
-                    'profile.skillsToTeach': uniqueSkillsToTeach,
-                    'profile.skillsToLearn': uniqueSkillsToLearn
-                }
-            },
-            { new: true }
-        );
-
-        return user;
+        return updatedUser;
     } catch (error) {
         throw new Error(`Error updating user profile: ${error}`);
     }
 }
+
+
 
     // 7. Add Review Reference to User
     static async addReviewToUser(username, reviewId) {

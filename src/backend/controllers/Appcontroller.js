@@ -82,12 +82,13 @@ const getUser = async (req, res) => {
 // Update a user profile
 const updateUser = async (req, res) => {
   try {
+    logger.info('Update user request in userController');
     const userEmail = req.user.email;
     logger.info('User email', userEmail);
     const user = await userController.findUserByEmail(userEmail);
     logger.info('User', user);
-    logger.info('Request body', req.body);
     if (!user) {
+      logger.warn(`User not found for email: ${userEmail}`);
       return res.status(404).json({ message: 'User not found' });
     }
 
@@ -96,13 +97,16 @@ const updateUser = async (req, res) => {
     const skillsToLearn = req.body.skillsToLearn || [];
     logger.info('Skills to learn', skillsToLearn);
     const newUser = await userController.updateUserProfile(userEmail, skillsToTeach, skillsToLearn);
-    logger.info('New user', newUser);
-    return res.status(200).json(newUser);
+    
+
+    return res.status(200).json({ message: 'User updated successfully', data: newUser });
+
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Internal server error' });
+    logger.error(`Error updating user: ${error.message}`);
+    return res.status(500).json({ message: 'Internal server error' });
   }
 }
+
 
 const addSkill = async (req, res) => {
   try {

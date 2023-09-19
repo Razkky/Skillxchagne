@@ -1,82 +1,78 @@
 import React, { useState, useEffect } from 'react';
-import SkillsComponent from './skillsgame';
+import SkillsComponent from './SkillsComponent';
 
-const NODE_BASE_URL = process.env.NODE_BASE_URL;
+const REACT_APP_BASE_URL = process.env.REACT_APP_BASE_URL;
 
-async function getUserProfile() {
-  console.log('Getting user profile');
-  const token = localStorage.getItem('authToken');
-  console.log('Token', token);
-  if (!token) {
-    console.error('No token found');
-    return null;
-  }
-  console.log(`logging url${NODE_BASE_URL}/api/user/`)
-
-  const response = await fetch('http://localhost:5001/api/user', {
-    method: 'GET',
-    headers: {
-      'Authorization': `Bearer ${token}`
+async function fetchUserProfile() {
+    const token = localStorage.getItem('authToken');
+    if (!token) {
+        return { error: 'No token found' };
     }
-  });
 
-  console.log('Response gotten', response);
-  if (response.status === 401) {
-    console.error('Unauthorized');
-    return null;
-  }
-
-  if (!response.ok) {
-    console.error('Server error:', response.status);
-    return null;
-  }
-
-  try {
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Error parsing JSON response:', error);
-    return null;
-  }
+    try {
+        const response = await fetch(`${REACT_APP_BASE_URL}/api/user/`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+        if (!response.ok) {
+            const errData = await response.json();
+            return { error: errData.message || response.statusText };
+        }
+        return await response.json();
+    } catch (error) {
+        return { error: error.message || 'Unknown error' };
+    }
 }
 
 function UserProfile() {
-  const [userProfile, setUserProfile] = useState(null);
-  const [loading, setLoading] = useState(true);
+    const [userProfile, setUserProfile] = useState(null);
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    (async () => {
-      const profileData = await getUserProfile();
-      setLoading(false);
-      if (profileData) {
-        setUserProfile(profileData);
-      }
-    })();
-  }, []);
+    useEffect(() => {
+        const loadUserProfile = async () => {
+            const profileData = await fetchUserProfile();
+            if (profileData.error) {
+                setError(profileData.error);
+            } else {
+                setUserProfile(profileData);
+            }
+            setLoading(false);
+        };
 
-  return (
-    <div className="shadow-md rounded-lg px-8 pt-6 pb-8 mb-4 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-700
-    text-white">
-      {loading ? (
-        <p className="text-center text-gray-100">Loading user profile...</p>
-      ) : userProfile ? (
-        <div>
-          <h2 className="text-2xl font-bold mb-4 text-gray-100">User Profile</h2>
-          <p className="mb-4 text-gray-200">
-            <span className="font-semibold text-gray-100">Full Name:</span> {userProfile.profile.fullName}
-          </p>
-          <p className="mb-4 text-gray-200">
-            <span className="font-semibold text-gray-100">Email:</span> {userProfile.email}
-          </p>
-          <div className="mb-4">
-            <SkillsComponent />
-          </div>
+        loadUserProfile();
+    }, []);
+
+    return (
+        <div className=" bg-white p-6 rounded-lg shadow-md">
+          {loading && (
+            <div className="mb-4 text-center">
+              <p className="text-blue-600 font-semibold">Loading user profile...</p>
+            </div>
+          )}
+      
+          {error && (
+            <div className="mb-4 text-center">
+              <p className="text-red-600 font-semibold">Error: {error}</p>
+            </div>
+          )}
+      
+          {userProfile && (
+            <div>
+              <h2 className="text-2xl font-bold text-gray-700 mb-4">User Profile</h2>
+                <div className="mb-4">  
+<p className="text-gray-700 font-semibold">Email: {userProfile.email}</p>
+                    <p className="text-gray-700 font-semibold">Name: {userProfile.profile.fullName}</p>
+ </div>
+              <SkillsComponent userProfile={userProfile} setUserProfile={setUserProfile} />
+            </div>
+          )}
         </div>
-      ) : (
-        <p className="text-center text-gray-700">No user profile data available.</p>
-      )}
-    </div>
-  );
+      );
+      
+      
 }
 
 export default UserProfile;

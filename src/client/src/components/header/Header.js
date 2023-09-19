@@ -2,13 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 function Header({ isAuthenticated, setIsAuthenticated }) {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
 
   const handleSignOut = () => {
     localStorage.removeItem('authToken');
@@ -30,17 +25,8 @@ function Header({ isAuthenticated, setIsAuthenticated }) {
       <Link to="/" className="text-2xl font-bold text-white">
         SkillXChange
       </Link>
-      
-      <button 
-        className="lg:hidden block"
-        onClick={toggleMenu}  
-      >
-        {/* ... (SVG icons code) */}
-      </button>
     
-      <div
-        className={`lg:flex lg:w-auto lg:space-x-8 ${isMenuOpen ? "" : "hidden"}`}
-      >
+      <nav className="lg:flex lg:w-auto lg:space-x-8">
         {!isAuthenticated ? (
           <>
             <Link
@@ -57,14 +43,23 @@ function Header({ isAuthenticated, setIsAuthenticated }) {
             </Link>
           </>
         ) : (
+          <>
+          <Link
+            to="/profile"
+            className="px-4 py-2 text-gray-200 font-medium rounded hover:bg-gray-700 hover:text-white"
+          >
+            Profile
+          </Link>
+
           <button
             onClick={handleSignOut}
             className="px-4 py-2 text-gray-200 font-medium rounded hover:bg-gray-700 hover:text-white"
           >
             Sign Out
           </button>
+          </>
         )}
-      </div>
+      </nav>
     </header>
   );
 }
