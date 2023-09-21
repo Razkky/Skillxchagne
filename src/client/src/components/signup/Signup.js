@@ -188,6 +188,16 @@ function Signup() {
               )}
             </div>
           ))}
+        {/* by signing up you agree to terms and conditions notification line */}
+          <div className="flex items-center justify-between">
+            <div className="flex items-center text-gray-800 text-sm
+            space-x-1 ">
+              By signing up you agree to our
+              <NavLink to="/terms" className="text-blue-500 hover:underline">
+                Terms and Conditions
+              </NavLink>
+            </div>
+          </div>
           <div className="mt-4">
             <button
               type="button"

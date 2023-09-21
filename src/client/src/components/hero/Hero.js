@@ -5,7 +5,9 @@ function Hero() {
     return (
         <div className="flex items-center justify-center h-full bg-gradient-to-r from-blue-600 to-purple-700 text-white py-24">
             <div className="container mx-auto px-6 sm:px-8 lg:px-12 space-y-12">
-                <h2 className="text-6xl font-extrabold tracking-tight text-center">Welcome to SkillXChange</h2>
+                <h2 className="sm:text-4xl text-3xl font-extrabold tracking-tight text-center
+                md:text-5xl lg:text-6xl
+                ">Welcome to SkillXChange</h2>
                 <div className="text-center">
                     <p className="text-2xl text-gray-200 leading-relaxed">
                         Dive into a world of knowledge sharing. SkillXchange is where passion meets growth.

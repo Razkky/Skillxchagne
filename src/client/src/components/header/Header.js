@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 function Header() {
@@ -13,16 +13,97 @@ function Header() {
     navigate('/');
   };
 
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <header className="flex items-center justify-between py-4 px-8 bg-gradient-to-r from-gray-700 to-gray-900 shadow">
-      <Link to="/" className="text-2xl font-bold text-white">
-        SkillXChange
-      </Link>
-    
-      <nav className="lg:flex lg:w-auto lg:space-x-6">
+    <header className="py-4 px-4 sm:px-8 bg-gradient-to-r from-gray-700 to-gray-900 shadow">
+      <div className="flex items-center justify-between">
+        <Link to="/" className="text-2xl font-bold text-white">
+          SkillXChange
+        </Link>
+        <div className="lg:hidden">
+          {/* Hamburger menu icon */}
+          <button
+            className="text-gray-200 hover:text-white focus:outline-none"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            ☰
+          </button>
+        </div>
+      </div>
+
+      {/* Responsive navigation menu */}
+      {menuOpen && (
+        <nav className="lg:hidden">
+          <ul className="text-gray-200">
+            <li>
+              <Link
+                to="/"
+                onClick={() => setMenuOpen(false)}
+                className="block py-2 px-4 hover:bg-gray-800 hover:text-white"
+              >
+                Home
+              </Link>
+            </li>
+            {isAuthenticated ? (
+              <>
+                <li>
+                  <Link
+                    to="/profile"
+                    onClick={() => setMenuOpen(false)}
+                    className="block py-2 px-4 hover:bg-gray-800 hover:text-white"
+                  >
+                    Profile
+                  </Link>
+                </li>
+                <li>
+                  <button
+                    onClick={handleSignOut}
+                    className="block py-2 px-4 hover:bg-gray-800 hover:text-white"
+                  >
+                    Sign Out
+                  </button>
+                </li>
+              </>
+            ) : (
+              <>
+                <li>
+                  <Link
+                    to="/login"
+                    onClick={() => setMenuOpen(false)}
+                    className="block py-2 px-4 hover:bg-gray-800 hover:text-white"
+                  >
+                    Login
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/signup"
+                    onClick={() => setMenuOpen(false)}
+                    className="block py-2 px-4 hover:bg-gray-800 hover:text-white"
+                  >
+                    Sign Up
+                  </Link>
+                </li>
+                <li>
+                  <a
+                    href="mailto:example@example.com" // Replace with your contact email address
+                    className="block py-2 px-4 hover:bg-gray-800 hover:text-white"
+                  >
+                    Contact Us
+                  </a>
+                </li>
+              </>
+            )}
+          </ul>
+        </nav>
+      )}
+
+      {/* Desktop navigation menu */}
+      <nav className="hidden lg:flex lg:w-auto lg:space-x-4">
         <Link
           to="/"
-          className="px-4 py-2 text-gray-200 font-medium rounded transition duration-300 ease-in-out hover:bg-gray-700 hover:text-white"
+          className="text-gray-200 hover:text-white"
         >
           Home
         </Link>
@@ -31,14 +112,14 @@ function Header() {
           <>
             <Link
               to="/profile"
-              className="px-4 py-2 text-gray-200 font-medium rounded transition duration-300 ease-in-out hover:bg-gray-700 hover:text-white"
+              className="text-gray-200 hover:text-white"
             >
               Profile
             </Link>
   
             <button
               onClick={handleSignOut}
-              className="px-4 py-2 text-gray-200 font-medium rounded transition duration-300 ease-in-out hover:bg-gray-700 hover:text-white"
+              className="text-gray-200 hover:text-white"
             >
               Sign Out
             </button>
@@ -47,19 +128,19 @@ function Header() {
           <>
             <Link
               to="/login"
-              className="px-4 py-2 text-gray-200 font-medium rounded transition duration-300 ease-in-out hover:bg-gray-700 hover:text-white"
+              className="text-gray-200 hover:text-white"
             >
               Login
             </Link>
             <Link
               to="/signup"
-              className="px-4 py-2 text-gray-200 font-medium rounded transition duration-300 ease-in-out hover:bg-gray-700 hover:text-white"
+              className="text-gray-200 hover:text-white"
             >
               Sign Up
             </Link>
             <a
               href="mailto:example@example.com" // Replace with your contact email address
-              className="px-4 py-2 text-gray-200 font-medium rounded transition duration-300 ease-in-out hover:bg-gray-700 hover:text-white"
+              className="text-gray-200 hover:text-white"
             >
               Contact Us
             </a>
@@ -68,7 +149,6 @@ function Header() {
       </nav>
     </header>
   );
-  
 }
 
 export default Header;

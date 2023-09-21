@@ -6,7 +6,7 @@ import Hero from './components/hero/Hero';
 import Header from './components/header/Header';
 import UserProfile from './components/profile/Profile';
 import PrivateRoute from './components/PrivateRoute';
-
+import TermsAndConditions from './components/signup/terms';
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
@@ -27,6 +27,7 @@ function App() {
       <div className="w-full p-4 bg-gradient-to-br from-gray-800 via-gray-900 to-gray-800 rounded-lg shadow-lg">
         <Routes>
           <Route path="/" element={<Hero />} />
+          <Route path="/terms" element={<TermsAndConditions />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/profile" element={<PrivateRoute><UserProfile /></PrivateRoute>} />
