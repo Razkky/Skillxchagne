@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import SkillsComponent from './SkillsComponent';
-
+import SkillsComponent from '../skills/SkillsComponent';
+import Matching from '../matching/matching';
 const REACT_APP_BASE_URL = process.env.REACT_APP_BASE_URL;
 
 async function fetchUserProfile() {
@@ -46,31 +46,36 @@ function UserProfile() {
     }, []);
 
     return (
-        <div className=" bg-white p-6 rounded-lg shadow-md">
+      <>
+        <div className="bg-base-100 p-6 rounded-lg shadow-md">
           {loading && (
             <div className="mb-4 text-center">
-              <p className="text-blue-600 font-semibold">Loading user profile...</p>
+              <p className="text-blue-600 font-semibold mt-4">Loading user profile...</p>
             </div>
           )}
-      
+    
           {error && (
             <div className="mb-4 text-center">
               <p className="text-red-600 font-semibold">Error: {error}</p>
             </div>
           )}
-      
+    
           {userProfile && (
             <div>
-              <h2 className="text-2xl font-bold text-gray-700 mb-4">User Profile</h2>
-                <div className="mb-4">  
-<p className="text-gray-700 font-semibold">Email: {userProfile.email}</p>
-                    <p className="text-gray-700 font-semibold">Name: {userProfile.profile.fullName}</p>
- </div>
+              <h2 className="text-2xl font-bold text-base mb-4">User Profile</h2>
+              <div className="mb-4">
+                <p className="text-base font-semibold">Email: {userProfile.email}</p>
+                <p className="text-base font-semibold">Name: {userProfile.profile.fullName}</p>
+              </div>
               <SkillsComponent userProfile={userProfile} setUserProfile={setUserProfile} />
             </div>
           )}
         </div>
-      );
+    
+        <Matching className="hidden sm:block" />
+      </>
+    );
+    
       
       
 }

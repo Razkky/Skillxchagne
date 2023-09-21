@@ -116,64 +116,49 @@ function GameHeader({ userProfile }) {
     const learningLevel = getLevelName((learningPoints / 200) * 100);
 
     return (
-        <div className="bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 text-white p-6 rounded-lg
-        hover:shadow-xl transition duration-300">
-
-        <h1 className="text-4xl mb-6 font-bold border-b pb-2 border-gray-600
-        text-center tracking-wide uppercase
-        ">
-          Skills X Change Game Profile
-        </h1>
-      
-        <div className="space-y-4 text-center text-sm font-semibold">
-          <div className="flex flex-wrap gap-3 justify-center items-center
-            ">
-            <div className="bg-green-800 flex items-center py-2 px-5 rounded-full shadow-md">
-              <span className="mr-3 font-bold
-              shadow-md rounded-full
-              ">Teaching Points:</span>
-              <span>
-                {teachingPoints} ({((teachingPoints / 945) * 100).toFixed(2)}%) -{" "}
-                {teachingLevel}
-              </span>
-            </div>
-            <div className="bg-blue-800 flex items-center py-2 px-5 rounded-full shadow-md
-            ">
-              <span className="mr-3 font-bold
-                shadow-md rounded-full
-              ">Learning Points:</span>
-              <span>
-                {learningPoints} ({((learningPoints / 567) * 100).toFixed(2)}%) -{" "}
-                {learningLevel}
-              </span>
-            </div>
+      <div className="bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 text-white p-6 rounded-lg hover:shadow-xl transition duration-300">
+      <h1 className="text-4xl mb-6 font-bold border-b pb-2 border-gray-600 text-center tracking-wide uppercase">
+        Skills X Change Game Profile
+      </h1>
+    
+      <div className="space-y-4 text-center text-sm font-semibold">
+        <div className="flex flex-wrap gap-3 justify-center items-center">
+          <div className="bg-green-800 flex items-center py-2 px-5 rounded-full shadow-md">
+            <span className="mr-3 font-bold shadow-md rounded-full">Teaching Points:</span>
+            <span>
+              {teachingPoints} ({((teachingPoints / 945) * 100).toFixed(2)}%) - {teachingLevel}
+            </span>
           </div>
-      
-          <div className="flex flex-wrap gap-3 justify-center items-center">
-  {skillsToTeach.map((skill, index) => (
-    <span
-      key={index}
-      className="py-1 px-3 rounded-full text-sm font-semibold bg-green-700 hover:bg-green-800 transition duration-300"
-    >
-      {skill} (Teaching)
-    </span>
-  ))}
-  {skillsToLearn.map((skill, index) => (
-    <span
-      key={index}
-      className="py-1 px-3 rounded-full text-sm font-semibold bg-blue-700 hover:bg-blue-800 transition duration-300"
-    >
-      {skill} (Learning)
-    </span>
-  ))}
-</div>
-
+          <div className="bg-blue-800 flex items-center py-2 px-5 rounded-full shadow-md">
+            <span className="mr-3 font-bold shadow-md rounded-full">Learning Points:</span>
+            <span>
+              {learningPoints} ({((learningPoints / 567) * 100).toFixed(2)}%) - {learningLevel}
+            </span>
+          </div>
+        </div>
+    
+        <div className="flex flex-wrap gap-3 justify-center items-center">
+          {skillsToTeach.map((skill, index) => (
+            <span
+              key={index}
+              className="py-1 px-3 rounded-full text-sm font-semibold bg-green-700 hover:bg-green-800 transition duration-300"
+            >
+              {skill} (Teaching)
+            </span>
+          ))}
+          {skillsToLearn.map((skill, index) => (
+            <span
+              key={index}
+              className="py-1 px-3 rounded-full text-sm font-semibold bg-blue-700 hover:bg-blue-800 transition duration-300"
+            >
+              {skill} (Learning)
+            </span>
+          ))}
         </div>
       </div>
-      
-      );
-      
+    </div>
     
+      );
 }
 
 function GameScore({ userProfile, setUserProfile }) {
@@ -317,20 +302,16 @@ function GameScore({ userProfile, setUserProfile }) {
     }
 
     return (
-        <div className="bg-gradient-to-tr from-gray-100 via-gray-50 to-gray-200 p-6 rounded-lg shadow-md
-        w-full min-w-full">
-       
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
+      <div className="bg-gradient-to-tr from-gray-100 via-gray-50 to-gray-200 p-2 rounded-lg shadow-md">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-2">
         {categories.map((category) => (
           <div
             key={category.category_name}
-            className="bg-white rounded-lg shadow-lg group hover:shadow-xl transition duration-300"
+            className="bg-white rounded-lg shadow-lg group hover:shadow-xl transition duration-300 cursor-pointer"
+            onClick={() => toggleSkillsList(category.category_name)}
+            onTouchStart={() => toggleSkillsList(category.category_name)}
           >
-            <div
-              onClick={() => toggleSkillsList(category.category_name)}
-              onTouchStart={() => toggleSkillsList(category.category_name)}
-              className="cursor-pointer hover:bg-gray-100 p-6"
-            >
+            <div className="p-2">
               <h2 className="text-2xl mb-4 font-bold text-gray-700">
                 {category.category_name}
               </h2>
@@ -341,13 +322,10 @@ function GameScore({ userProfile, setUserProfile }) {
               }`}
             >
               {category.skills.map((skill) => (
-                <li
-                  key={skill}
-                  className="flex justify-between items-center mb-4 p-6"
-                >
+                <li key={skill} className="flex justify-between items-center mb-2 p-2">
                   <span className="text-gray-600">{skill}</span>
                   <select
-                    className="bg-gray-900 text-white rounded p-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="bg-gray-900 text-white rounded p-1 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                     onChange={(e) =>
                       handleSkillSelect(category.category_name, skill, e.target.value)
                     }
@@ -363,7 +341,7 @@ function GameScore({ userProfile, setUserProfile }) {
           </div>
         ))}
       </div>
-      <div className="flex justify-center w-full mt-6">
+      <div className="flex justify-center w-full mt-2">
         <button
           onClick={handleSaveChanges}
           className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded-md shadow-md transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-300"
@@ -371,29 +349,25 @@ function GameScore({ userProfile, setUserProfile }) {
           Save Changes
         </button>
       </div>
-     </div>
+    </div>
+
+    
     );
 }
+
 function SkillsComponent({ userProfile, setUserProfile }) {
     const categories = skilldata.categories;
 
     return (
-        <div className="p-6 grid gap-4 bg-gradient-to-tr from-gray-100 via-gray-50 to-gray-200 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
-
-        <div className="col-span-1 lg:col-span-2 p-4 bg-white shadow-lg rounded-xl hover:shadow-xl transition-shadow duration-300">
-          <div className="mb-6">
-            <GameHeader userProfile={userProfile} className="text-2xl font-bold mb-4" />
-          </div>
-          <div className="bg-gray-50 p-4 rounded-lg hover:bg-gray-100 transition duration-300">
-            <GameRules />
-          </div>
-        </div>
-      
-        <div className="col-span-3 p-4 bg-white shadow-lg rounded-xl hover:shadow-xl transition-shadow duration-300">
-          <GameScore userProfile={userProfile} setUserProfile={setUserProfile} />
-        </div>
-      
+      <div className="flex flex-col items-center justify-center w-full m-w-full
+      ">
+      <div className="flex flex-col items-center justify-center w-full m-w-full"> 
+          <GameHeader userProfile={userProfile} className="
+          " />
+          <GameRules />
       </div>
+      <GameScore userProfile={userProfile} setUserProfile={setUserProfile} />
+    </div>
       
     );
     

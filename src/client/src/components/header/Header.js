@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 
-function Header({ isAuthenticated, setIsAuthenticated }) {
+function Header() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const token = localStorage.getItem('authToken');
+  const isAuthenticated = !!token;
+
   const handleSignOut = () => {
     localStorage.removeItem('authToken');
-    setIsAuthenticated(false);
     navigate('/');
   };
 
@@ -18,7 +20,30 @@ function Header({ isAuthenticated, setIsAuthenticated }) {
       </Link>
     
       <nav className="lg:flex lg:w-auto lg:space-x-8">
-        {!isAuthenticated ? (
+        <Link
+          to="/"
+          className="px-4 py-2 text-gray-200 font-medium rounded hover:bg-gray-700 hover:text-white"
+        >
+          Home
+        </Link>
+
+        {isAuthenticated ? (
+          <>
+            <Link
+              to="/profile"
+              className="px-4 py-2 text-gray-200 font-medium rounded hover:bg-gray-700 hover:text-white"
+            >
+              Profile
+            </Link>
+
+            <button
+              onClick={handleSignOut}
+              className="px-4 py-2 text-gray-200 font-medium rounded hover:bg-gray-700 hover:text-white"
+            >
+              Sign Out
+            </button>
+          </>
+        ) : (
           <>
             <Link
               to="/login"
@@ -38,22 +63,6 @@ function Header({ isAuthenticated, setIsAuthenticated }) {
             >
               Contact Us
             </a>
-          </>
-        ) : (
-          <>
-            <a
-              href="mailto:example@example.com" // Replace with your email address
-              className="px-4 py-2 text-gray-200 font-medium rounded hover:bg-gray-700 hover:text-white"
-            >
-              Profile
-            </a>
-
-            <button
-              onClick={handleSignOut}
-              className="px-4 py-2 text-gray-200 font-medium rounded hover:bg-gray-700 hover:text-white"
-            >
-              Sign Out
-            </button>
           </>
         )}
       </nav>
