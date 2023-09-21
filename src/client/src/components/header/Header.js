@@ -55,6 +55,23 @@ function Header() {
                   >
                     Profile
                   </Link>
+
+                  <Link 
+                    to="/skills"
+                    onClick={() => setMenuOpen(false)}
+                    className="block py-2 px-4 hover:bg-gray-800 hover:text-white"
+                  >
+                    Skills
+                  </Link>
+
+                  <Link 
+                    to="/matching"
+                    onClick={() => setMenuOpen(false)}
+                    className="block py-2 px-4 hover:bg-gray-800 hover:text-white"
+                  >
+                    Matching
+                  </Link>
+
                 </li>
                 <li>
                   <button
@@ -116,6 +133,20 @@ function Header() {
             >
               Profile
             </Link>
+            <Link
+              to="/skills"
+              className="text-gray-200 hover:text-white"
+            >
+              Skills
+            </Link>
+
+            <Link
+              to="/matching"
+              className="text-gray-200 hover:text-white"
+            >
+              Matching
+            </Link>
+
   
             <button
               onClick={handleSignOut}

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 
-export default function PrivateRoute({ children }) {
+function PrivateRouteWrapper({ children }) {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -30,3 +30,5 @@ export default function PrivateRoute({ children }) {
 
   return children;
 }
+
+export default PrivateRouteWrapper;

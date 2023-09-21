@@ -141,7 +141,7 @@ function Matching() {
         onClick={fetchMatchingUsers}
         disabled={isLoading}
       >
-        Update Matched Users
+        Refresh Matched Users
       </button>
     </div>
   );

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import SkillsComponent from '../skills/SkillsComponent';
+import SkillsSelector from './SkillsSelector';
 
 
 const REACT_APP_BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -27,7 +27,7 @@ async function fetchUserProfile() {
   }
 }
 
-function UserProfile() {
+function SkillsController() {
   const [userProfile, setUserProfile] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -52,10 +52,10 @@ function UserProfile() {
          {loading && <p className="text-blue-400 font-semibold text-lg mt-4">Loading user profile...</p>}
         {error && <p className="text-red-400 font-semibold text-lg">Error: {error}</p>}
         {userProfile && (
-            <SkillsComponent userProfile={userProfile} setUserProfile={setUserProfile} />
+            <SkillsSelector userProfile={userProfile} setUserProfile={setUserProfile} />
         )}
     </div>
   );
 }
 
-export default UserProfile;
+export default SkillsController;

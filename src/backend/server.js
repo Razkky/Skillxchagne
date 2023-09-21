@@ -38,6 +38,11 @@ app.get('/signup', (req, res) => {
   res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
 })
 
+
+app.get('/profile', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+})
+
 app.use(routes);
 //when no routes match, serve client build files
 app.get('*', (req, res) => {

@@ -54,10 +54,6 @@ class UserController {
         }
       }
       
-      
-
-
-    // 2. Check Password
     static async checkPassword(email, inputPassword) {
         try {
             const user = await UserController.findUserByEmail(email);
@@ -127,8 +123,7 @@ class UserController {
             return { status: 500, message: 'Internal server error', error: error.message };
         }
     }
-    
-
+  
     static async login(email, password) {
         try {
             logger.info(`User Controller Login Method`);
@@ -156,18 +151,9 @@ class UserController {
         }
     }
     
-    // static async fetchUserProfile(email) {
-    //     try {
-    //       // Query your database or data source to fetch the user profile
-    //       const userProfile = await UserController.findUserByEmail(email);
-    //       return userProfile;
-    //     } catch (error) {
-    //       throw new Error(`Error fetching user profile: ${error}`);
-    //     }
-    //   }
+ 
       
 
-    // 6. Update User Profile
  // 6. Update User Profile - Update skills lists
  static async updateUserProfile(email, skillsToTeach, skillsToLearn) {
     try {
