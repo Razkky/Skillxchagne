@@ -1,5 +1,5 @@
 const express = require('express');
-const { addUser, Login, getUser, updateUser, addSkill, getSkill, updateSkill, deleteSkill } = require('../controllers/Appcontroller');
+const { getMatchingUsers,addUser, Login, getUser, updateUser, addSkill, getSkill, updateSkill, deleteSkill } = require('../controllers/Appcontroller');
 const { authenticateUser } = require('../middleware/auth');
 const { body } = require('express-validator');
 const logger = require('../utils/logger');
@@ -23,15 +23,5 @@ router.put('/api/user/update', authenticateUser, updateUser);
 logger.info('User-related routes registered');
 router.get('/api/user/', authenticateUser, getUser);
 logger.info('User-related routes registered');
-
-// // Skill-related routes
-// router.post('/api/skill/add', authenticateUser, [
-//     body('name').notEmpty().withMessage('Skill name is required'),
-//     body('category').notEmpty().withMessage('Category is required'),
-// ], addSkill);
-
-// router.get('/api/skill/:id', authenticateUser, getSkill);
-// router.put('/api/skill/:id/update', authenticateUser, updateSkill);
-// router.delete('/api/skill/:id/delete', authenticateUser, deleteSkill);
-
+router.get('/api/matches', authenticateUser,getMatchingUsers);
 module.exports = router;

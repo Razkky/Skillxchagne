@@ -3,11 +3,12 @@ html, body {
   margin: 0;
   padding: 0;
   font-size: 16px;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Roboto', 'Arial', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f3f4f6;
-  color: #333333;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  line-height: 1.5;
 }
 
 /* Global box-sizing */
@@ -17,28 +18,24 @@ html, body {
 
 /* Global text selection styling */
 ::selection {
-  background-color: #6b5b95;
+  background-color: var(--accent-color);
   color: #ffffff;
 }
 
 /* Custom Colors */
 :root {
-  --primary-color: #4a90e2;
+  --primary-color: #3498db;
   --secondary-color: #2c3e50;
-  --accent-color: #8e44ad;
-  --text-color: #333333;
-  --background-color: #f3f4f6;
-  --shadow-color: #e0e0e0;
-}
-
-/* Global Background and Text Color */
-body {
-
+  --accent-color: #9b59b6;
+  --text-color: #2d2d2d;
+  --background-color: #f7f9fc;
+  --shadow-color: rgba(0, 0, 0, 0.1);
 }
 
 /* Headings */
 h1, h2, h3, h4, h5, h6 {
-  font-weight: bold;
+  font-weight: 600;
+  margin-top: 0;
 }
 
 /* Links */
@@ -48,13 +45,13 @@ a {
   transition: color 0.3s ease-in-out;
 }
 
-a:hover {
+a:hover, a:focus {
   color: var(--accent-color);
 }
 
 /* Sections */
 .section {
-  padding: 2rem;
+  padding: 3rem 1rem;
 }
 
 /* Buttons */
@@ -63,27 +60,27 @@ a:hover {
   padding: 0.75rem 1.5rem;
   background-color: var(--primary-color);
   color: #ffffff;
-  border-radius: 0.25rem;
-  font-weight: bold;
+  border-radius: 0.5rem;
+  font-weight: 600;
   text-align: center;
   text-decoration: none;
-  transition: background-color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+  box-shadow: 0 4px 6px var(--shadow-color);
 }
 
-.button:hover {
+.button:hover, .button:focus {
   background-color: var(--secondary-color);
+  transform: translateY(-2px);
 }
 
 /* Shadows */
-
-/* Rounded Corners */
-.rounded-lg {
-  border-radius: 0.5rem;
+.shadow {
+  box-shadow: 0 4px 6px var(--shadow-color);
 }
 
 /* Responsive Typography */
 @media screen and (max-width: 768px) {
   body {
-    font-size: 14px;
+    font-size: 15px;
   }
 }

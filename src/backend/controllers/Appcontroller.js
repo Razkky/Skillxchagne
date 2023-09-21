@@ -79,6 +79,41 @@ const getUser = async (req, res) => {
   }
 };
 
+const getMatchingUsers = async (req, res) => {
+  logger.info('Get matching users request in userController');
+  try {
+    logger.info('Get matching users request in userController');
+    // User data is available in req.user due to the `authenticateUser` middleware
+    logger.info('User', req.user);
+    const user = req.user;
+    logger.info('User', user);
+    const userProfile = await userController.findUserByEmail(user.email);
+    logger.info('User profile', userProfile);
+    if (!userProfile) {
+      logger.info('User profile not found');
+
+      return res.status(404).json({ message: 'User profile not found' });
+    }
+
+    const {email, skillsToLearn, skillsToTeach } = userProfile;
+    logger.info('Email', email);
+    logger.info('Skills to learn', skillsToLearn);
+    logger.info('Skills to teach', skillsToTeach);
+    const matchingUsers = await userController.findMatchingUsers(email,skillsToLearn, skillsToTeach);
+    const matchingUserData = matchingUsers.map(user => ({
+      fullName: user.profile.fullName,skillsToLearn: user.skillsToLearn,skillsToTeach: user.skillsToTeach,
+      email: user.email,
+    }));
+    logger.info('Matching user data', matchingUserData);
+
+    return res.status(200).json(matchingUserData);
+  } catch (err) {
+    logger.error('Error fetching user profile:', err);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+
 // Update a user profile
 const updateUser = async (req, res) => {
   try {
@@ -156,5 +191,8 @@ module.exports = {
   addSkill,
   getSkill,
   updateSkill,
-  deleteSkill
+  deleteSkill,
+  getMatchingUsers,
+
+
 };

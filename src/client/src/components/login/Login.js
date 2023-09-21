@@ -122,15 +122,17 @@ function Login() {
 
   return (
     <>
-      <main className="bg-gray-800 min-h-screen flex items-center justify-center">
-        <section className="max-w-md w-full">
-          <div className="bg-white p-8 rounded-md shadow-md">
-            <h2 className="text-2xl font-semibold mb-6 text-gray-800">Login</h2>
+      <main className="bg-gray-900 min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <section className="max-w-md w-full space-y-8">
+          <div className="bg-white p-8 rounded-lg shadow-xl">
+            <h2 className="text-3xl font-extrabold mb-6 text-gray-900 text-center">Login</h2>
             {errorMessage && (
-              <div className="mb-4 text-red-500">{errorMessage}</div>
+              <div className="mb-4 text-center bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                <span className="block sm:inline">{errorMessage}</span>
+              </div>
             )}
             <div className="mb-4">
-              <label htmlFor="email-address" className="block mb-2 text-sm font-medium text-gray-600">Email address</label>
+              <label htmlFor="email-address" className="block text-sm font-medium text-gray-700">Email address</label>
               <input
                 id="email-address"
                 name="email"
@@ -139,11 +141,11 @@ function Login() {
                 placeholder="Email address"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full p-2 border rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-500 sm:text-sm"
+                className="mt-1 w-full p-3 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
               />
             </div>
-            <div className="mb-4">
-              <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-600">Password</label>
+            <div className="mb-6">
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
               <input
                 id="password"
                 name="password"
@@ -152,30 +154,32 @@ function Login() {
                 placeholder="Password"
                 value={formData.password}
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                className="w-full p-2 border rounded-md shadow-sm focus:outline-none focus:ring focus:border-blue-500 sm:text-sm"
+                className="mt-1 w-full p-3 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
               />
             </div>
-            <div>
+            <div className="flex items-center justify-between">
               <button
                 onClick={handleLogin}
-                className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:text-sm"
+                className="w-full bg-blue-600 text-white p-3 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:text-sm"
               >
                 Login
               </button>
-              <p className="text-sm text-gray-600 text-center mt-2">
-                No account yet? {' '}
-                <NavLink to="/signup" className="text-blue-500">Sign up</NavLink>
-              </p>
             </div>
-            <div className="flex items-center justify-center mt-4">
-              <div className="border-t border-gray-400 w-full"></div>
+            <p className="mt-4 text-sm text-gray-600 text-center">
+              No account yet? {' '}
+              <NavLink to="/signup" className="font-medium text-blue-600 hover:text-blue-500">
+                Sign up
+              </NavLink>
+            </p>
+            <div className="flex items-center justify-center mt-6">
+              <div className="border-t border-gray-300 w-1/3"></div>
               <div className="text-gray-500 mx-3">Or</div>
-              <div className="border-t border-gray-400 w-full"></div>
+              <div className="border-t border-gray-300 w-1/3"></div>
             </div>
-            <div className="flex items-center justify-center mt-4">
+            <div className="flex items-center justify-center mt-6">
               <button
                 onClick={handleGoogleLogin}
-                className="w-full bg-red-500 text-white p-2 rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:text-sm"
+                className="w-full bg-red-600 text-white p-3 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:text-sm"
               >
                 Sign in with Google
               </button>
@@ -185,6 +189,7 @@ function Login() {
       </main>
     </>
   );
+  
 }
 
 export default Login;

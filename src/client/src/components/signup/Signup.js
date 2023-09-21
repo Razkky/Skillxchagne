@@ -116,129 +116,117 @@ function Signup() {
 
 
   return (
-    <div className="bg-gray-800 p-6 rounded-md shadow-md">
-      <h2 className="text-2xl font-semibold mb-6 text-white">Signup</h2>
-      <div className="mb-4 text-red-500">{errors.general}</div>
-      <div className="grid grid-cols-2 gap-4">
-        <div className="mb-4">
-          <label htmlFor="username" className="block mb-2 text-sm font-medium text-gray-300">
-            Username
-          </label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            placeholder="Username"
-            value={formData.username}
-            onChange={handleInputChange}
-            className={`w-full p-2 border rounded-md shadow-sm focus:outline-none focus:border-blue-500 ${
-              errors.username ? 'border-red-500' : 'border-gray-300'
-            } sm:text-sm bg-gray-900 text-white`}
-          />
-          <div className="text-red-500 text-sm mt-1">{errors.username}</div>
-        </div>
-        <div className="mb-4">
-          <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-300">
-            Email
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Email"
-            value={formData.email}
-            onChange={handleInputChange}
-            className={`w-full p-2 border rounded-md shadow-sm focus:outline-none focus:border-blue-500 ${
-              errors.email ? 'border-red-500' : 'border-gray-300'
-            } sm:text-sm bg-gray-900 text-white`}
-          />
-          <div className="text-red-500 text-sm mt-1">{errors.email}</div>
-        </div>
-        <div className="mb-4">
-          <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-300">
-            Password
-          </label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            placeholder="Password"
-            value={formData.password}
-            onChange={handleInputChange}
-            className={`w-full p-2 border rounded-md shadow-sm focus:outline-none focus:border-blue-500 ${
-              errors.password ? 'border-red-500' : 'border-gray-300'
-            } sm:text-sm bg-gray-900 text-white`}
-          />
-          <div className="text-red-500 text-sm mt-1">{errors.password}</div>
-        </div>
-        <div className="mb-4">
-          <label htmlFor="confirmPassword" className="block mb-2 text-sm font-medium text-gray-300">
-            Confirm Password
-          </label>
-          <input
-            type="password"
-            id="confirmPassword"
-            name="confirmPassword"
-            placeholder="Confirm Password"
-            value={formData.confirmPassword}
-            onChange={handleInputChange}
-            className={`w-full p-2 border rounded-md shadow-sm focus:outline-none focus:border-blue-500 ${
-              errors.confirmPassword ? 'border-red-500' : 'border-gray-300'
-            } sm:text-sm bg-gray-900 text-white`}
-          />
-          <div className="text-red-500 text-sm mt-1">{errors.confirmPassword}</div>
-        </div>
-      
-        <div className="mb-4">
-          <label htmlFor="fullName" className="block mb-2 text-sm font-medium text-gray-300">
-            Full Name
-          </label>
-          <input
-            type="text"
-            id="fullName"
-            name="fullName"
-            placeholder="Full Name"
-            value={formData.fullName}
-            onChange={handleInputChange}
-            className={`w-full p-2 border rounded-md shadow-sm focus:outline-none focus:border-blue-500 ${
-              errors.fullName ? 'border-red-500' : 'border-gray-300'
-            } sm:text-sm bg-gray-900 text-white`}
-          />
-          <div className="text-red-500 text-sm mt-1">{errors.fullName}</div>
-        </div>
+    <main className="bg-gray-900 min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <section className="max-w-md w-full space-y-8">
+      <div className="bg-white p-8 rounded-lg shadow-xl">
+      <h2 className="text-3xl font-semibold text-gray-800 mb-6 text-center">Sign Up</h2>
+      <div className="mb-6">
+        {errors.general && (
+          <div className="bg-red-100 border border-red-400 text-red-700 py-2 px-4 rounded-md">
+            {errors.general}
+          </div>
+        )}
       </div>
-      <div>
-        <button
-          type="button"
-          onClick={handleEmailSignup}
-          className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-500 hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-        >
-          Signup
-        </button>
+      <form>
+        <div className="grid grid-cols-1 gap-4">
+          {[
+            {
+              id: 'username',
+              label: 'Username',
+              type: 'text',
+              value: formData.username,
+              error: errors.username,
+            },
+            {
+              id: 'email',
+              label: 'Email',
+              type: 'email',
+              value: formData.email,
+              error: errors.email,
+            },
+            {
+              id: 'password',
+              label: 'Password',
+              type: 'password',
+              value: formData.password,
+              error: errors.password,
+            },
+            {
+              id: 'confirmPassword',
+              label: 'Confirm Password',
+              type: 'password',
+              value: formData.confirmPassword,
+              error: errors.confirmPassword,
+            },
+            {
+              id: 'fullName',
+              label: 'Full Name',
+              type: 'text',
+              value: formData.fullName,
+              error: errors.fullName,
+            },
+          ].map((field) => (
+            <div key={field.id}>
+              <label htmlFor={field.id} className="block text-sm font-medium text-gray-800">
+                {field.label}
+              </label>
+              <input
+                type={field.type}
+                id={field.id}
+                name={field.id}
+                placeholder={field.label}
+                value={field.value}
+                onChange={handleInputChange}
+                className={`
+                  w-full py-2 px-3 border rounded-md shadow-sm focus:outline-none
+                  ${field.error ? 'border-red-500' : 'border-gray-300'}
+                  sm:text-sm bg-gray-100 text-gray-800
+                `}
+              />
+              {field.error && (
+                <p className="text-red-500 text-sm mt-1">{field.error}</p>
+              )}
+            </div>
+          ))}
+          <div className="mt-4">
+            <button
+              type="button"
+              onClick={handleEmailSignup}
+              className="w-full py-2 px-4 bg-blue-700 hover:bg-blue-800 text-gray-200 font-semibold rounded-md transition duration-300 ease-in-out focus:outline-none focus:ring focus:ring-blue-300"
+            >
+              Sign Up
+            </button>
+          </div>
+        </div>
+      </form>
+      <div className="mt-6 flex items-center justify-between">
+        <hr className="w-1/4 border-gray-300" />
+        <p className="text-sm text-gray-800">Or</p>
+        <hr className="w-1/4 border-gray-300" />
       </div>
-      <div className="mt-4 flex items-center justify-between">
-        <span className="border-b border-gray-300 w-1/5 lg:w-1/4"></span>
-        <NavLink
-          to="/login"
-          className="text-sm text-gray-300 hover:text-gray-200"
-        >
-          Or Login
-        </NavLink>
-        <span className="border-b border-gray-300 w-1/5 lg:w-1/4"></span>
-      </div>
-      <div className="mt-4 flex items-center justify-between">
-        <span className="border-b border-gray-300 w-1/5 lg:w-1/4"></span>
+      <div className="mt-6">
         <button
           type="button"
           onClick={handleGoogleSignup}
-          className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+          className="w-full py-2 px-4 bg-red-500 hover:bg-red-800 text-gray-100 font-semibold rounded-md transition duration-300 ease-in-out focus:outline-none focus:ring focus:ring-red-300"
         >
-          Signup with Google
+          Sign Up with Google
         </button>
-        <span className="border-b border-gray-300 w-1/5 lg:w-1/4"></span>
+      </div>
+      <div className="mt-4 text-center">
+        <p className="text-sm text-gray-800">
+          Already have an account?{' '}
+          <NavLink to="/login" className="text-blue-500 hover:underline">
+            Log in here
+          </NavLink>
+        </p>
       </div>
     </div>
+    </section>
+  </main>
   );
+  
+  
 }
 
 export default Signup;

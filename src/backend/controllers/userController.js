@@ -24,6 +24,39 @@ class UserController {
         }
     }
 
+    static async findMatchingUsers(currentUserEmail, skillsToLearn, skillsToTeach) {
+        try {
+          logger.info(`Finding matching users in userController`);
+          logger.info(`Skills to learn: ${skillsToLearn}`);
+          logger.info(`Skills to teach: ${skillsToTeach}`);
+      
+          const matchingUsers = await User.find({
+            $and: [
+              { email: { $ne: currentUserEmail } }, // Exclude the current user
+              {
+                $or: [
+                  {
+                    $and: [
+                      { skillsToLearn: { $elemMatch: { $in: skillsToTeach } } },
+                      { skillsToTeach: { $elemMatch: { $in: skillsToLearn } } },
+                    ],
+                  },
+                  { skillsToLearn: { $in: skillsToTeach } },
+                  { skillsToTeach: { $in: skillsToLearn } },
+                ],
+              },
+            ],
+          });
+      
+          return matchingUsers;
+        } catch (error) {
+          throw new Error(`Error finding matching users: ${error}`);
+        }
+      }
+      
+      
+
+
     // 2. Check Password
     static async checkPassword(email, inputPassword) {
         try {
@@ -172,6 +205,7 @@ class UserController {
         throw new Error(`Error updating user profile: ${error}`);
     }
 }
+
 
 
 
