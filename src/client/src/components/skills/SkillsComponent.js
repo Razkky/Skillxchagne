@@ -232,7 +232,9 @@ function GameScore({ userProfile, setUserProfile }) {
                       key={category.category_name}
                       className="bg-white rounded-xl shadow-md group hover:shadow-2xl transform hover:-translate-y-1 transition-transform duration-300 cursor-pointer"
                       onClick={() => toggleSkillsList(category.category_name)}
-                      onTouchStart={() => toggleSkillsList(category.category_name)}
+                      onMouseEnter={() => setShowSkills({ ...showSkills, [category.category_name]: true })}
+                        onMouseLeave={() => setShowSkills({ ...showSkills, [category.category_name]: false })}
+                        
                   >
                       <div className="p-4">
                           <h2 className="text-3xl font-semibold text-gray-800 mb-4">
