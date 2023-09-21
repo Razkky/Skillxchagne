@@ -11,15 +11,6 @@ function Header({ isAuthenticated, setIsAuthenticated }) {
     navigate('/');
   };
 
-  useEffect(() => {
-    const token = localStorage.getItem('authToken');
-    if (token) {
-      setIsAuthenticated(true);
-    } else {
-      setIsAuthenticated(false);
-    }
-  }, [location]);
-
   return (
     <header className="flex items-center justify-between py-4 px-8 bg-gray-800 shadow">
       <Link to="/" className="text-2xl font-bold text-white">
@@ -41,22 +32,28 @@ function Header({ isAuthenticated, setIsAuthenticated }) {
             > 
               Sign Up
             </Link>
+            <a
+              href="mailto:example@example.com" // Replace with your contact email address
+              className="px-4 py-2 text-gray-200 font-medium rounded hover:bg-gray-700 hover:text-white"
+            >
+              Contact Us
+            </a>
           </>
         ) : (
           <>
-          <Link
-            to="/profile"
-            className="px-4 py-2 text-gray-200 font-medium rounded hover:bg-gray-700 hover:text-white"
-          >
-            Profile
-          </Link>
+            <a
+              href="mailto:example@example.com" // Replace with your email address
+              className="px-4 py-2 text-gray-200 font-medium rounded hover:bg-gray-700 hover:text-white"
+            >
+              Profile
+            </a>
 
-          <button
-            onClick={handleSignOut}
-            className="px-4 py-2 text-gray-200 font-medium rounded hover:bg-gray-700 hover:text-white"
-          >
-            Sign Out
-          </button>
+            <button
+              onClick={handleSignOut}
+              className="px-4 py-2 text-gray-200 font-medium rounded hover:bg-gray-700 hover:text-white"
+            >
+              Sign Out
+            </button>
           </>
         )}
       </nav>

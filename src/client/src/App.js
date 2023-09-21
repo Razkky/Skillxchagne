@@ -38,7 +38,7 @@ function App() {
         </main>
         <footer className="bg-blue-600 text-white py-4 text-center mt-auto">
           <div className="container mx-auto">
-            <p>&copy; {new Date().getFullYear()} My App. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} SkillXchange. All rights reserved</p>
           </div>
         </footer>
       </Router>
