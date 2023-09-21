@@ -2,30 +2,30 @@ import React from 'react';
 
 function GameRules() {
   return (
-    <div className="bg-gray-900 p-6 rounded-lg mb-6 shadow-md text-white">
-      <h2 className="text-2xl mb-4 font-bold border-b pb-2 border-gray-700">Game Legend</h2>
-      <p className="text-gray-400 mb-4 leading-relaxed">
-        Welcome to the Skill Balance Game! In this engaging challenge, you have the power to categorize your skills into two distinct domains: "Teaching" and "Learning."
-      </p>
-      <div className="flex items-center mb-4">
-        <div className="bg-green-600 w-6 h-6 mr-3 rounded-full flex items-center justify-center">
-          <span className="text-white text-sm font-semibold px-2">T</span>
-        </div>
-        <p className="text-gray-400 flex-grow">
-          <strong>Teaching Points:</strong> Earn these points by selecting skills as "Teaching." Showcase your ability to educate others.
+    <div className="bg-gray-900 p-8 rounded-xl shadow-2xl text-white space-y-6">
+        <h2 className="text-3xl font-extrabold border-b-2 pb-4 border-gray-700">Game Rules</h2>
+        <p className="text-gray-400 mb-6 leading-relaxed text-lg">
+            Welcome to the Skill Balance Game! This game is all about recognizing and categorizing your skills. Are you an expert in a particular skill and can teach others? Or are you eager to learn a new skill?
         </p>
-      </div>
-      <div className="flex items-center mb-4">
-        <div className="bg-blue-600 w-6 h-6 mr-3 rounded-full flex items-center justify-center">
-          <span className="text-white text-sm font-semibold px-2">L</span>
+        <div className="flex items-center mb-6 space-x-4">
+            <div className="bg-green-700 w-8 h-8 rounded-full flex items-center justify-center">
+                <span className="text-white text-lg font-bold px-2">T</span>
+            </div>
+            <p className="text-gray-400 flex-grow text-lg">
+                <strong>Teaching Points:</strong> For every skill you can teach, you earn points. These points are a testament to your expertise and your ability to share knowledge with others. Each skill you categorize as "Teaching" earns you 5 points.
+            </p>
         </div>
-        <p className="text-gray-400 flex-grow">
-          <strong>Learning Points:</strong> Accumulate these points by designating skills as "Learning." Demonstrate your dedication to acquiring new knowledge and skills.
+        <div className="flex items-center mb-6 space-x-4">
+            <div className="bg-blue-700 w-8 h-8 rounded-full flex items-center justify-center">
+                <span className="text-white text-lg font-bold px-2">L</span>
+            </div>
+            <p className="text-gray-400 flex-grow text-lg">
+                <strong>Learning Points:</strong> For every skill you wish to learn, you earn points. These points reflect your dedication to personal growth and continuous learning. Each skill you categorize as "Learning" earns you 3 points.
+            </p>
+        </div>
+        <p className="text-gray-400 leading-relaxed text-lg">
+            The goal is to achieve a balance between the skills you can teach and the skills you wish to learn. As you progress, you'll attain different titles based on your points, ranging from "Complete N00b of N00bs" to "Supreme Master of All Skills". So, are you ready to embark on this journey of self-improvement and discovery?
         </p>
-      </div>
-      <p className="text-gray-400 leading-relaxed">
-        Strive for balance! Achieving equilibrium between these two categories will mold you into a well-rounded individual, proficient in both teaching and learning. Embrace the journey of self-improvement!
-      </p>
     </div>
   );
 }

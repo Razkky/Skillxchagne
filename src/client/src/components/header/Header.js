@@ -14,31 +14,31 @@ function Header() {
   };
 
   return (
-    <header className="flex items-center justify-between py-4 px-8 bg-gray-800 shadow">
+    <header className="flex items-center justify-between py-4 px-8 bg-gradient-to-r from-gray-700 to-gray-900 shadow">
       <Link to="/" className="text-2xl font-bold text-white">
         SkillXChange
       </Link>
     
-      <nav className="lg:flex lg:w-auto lg:space-x-8">
+      <nav className="lg:flex lg:w-auto lg:space-x-6">
         <Link
           to="/"
-          className="px-4 py-2 text-gray-200 font-medium rounded hover:bg-gray-700 hover:text-white"
+          className="px-4 py-2 text-gray-200 font-medium rounded transition duration-300 ease-in-out hover:bg-gray-700 hover:text-white"
         >
           Home
         </Link>
-
+  
         {isAuthenticated ? (
           <>
             <Link
               to="/profile"
-              className="px-4 py-2 text-gray-200 font-medium rounded hover:bg-gray-700 hover:text-white"
+              className="px-4 py-2 text-gray-200 font-medium rounded transition duration-300 ease-in-out hover:bg-gray-700 hover:text-white"
             >
               Profile
             </Link>
-
+  
             <button
               onClick={handleSignOut}
-              className="px-4 py-2 text-gray-200 font-medium rounded hover:bg-gray-700 hover:text-white"
+              className="px-4 py-2 text-gray-200 font-medium rounded transition duration-300 ease-in-out hover:bg-gray-700 hover:text-white"
             >
               Sign Out
             </button>
@@ -47,19 +47,19 @@ function Header() {
           <>
             <Link
               to="/login"
-              className="px-4 py-2 text-gray-200 font-medium rounded hover:bg-gray-700 hover:text-white"
+              className="px-4 py-2 text-gray-200 font-medium rounded transition duration-300 ease-in-out hover:bg-gray-700 hover:text-white"
             >
               Login
             </Link>
             <Link
               to="/signup"
-              className="px-4 py-2 text-gray-200 font-medium rounded hover:bg-gray-700 hover:text-white"
-            > 
+              className="px-4 py-2 text-gray-200 font-medium rounded transition duration-300 ease-in-out hover:bg-gray-700 hover:text-white"
+            >
               Sign Up
             </Link>
             <a
               href="mailto:example@example.com" // Replace with your contact email address
-              className="px-4 py-2 text-gray-200 font-medium rounded hover:bg-gray-700 hover:text-white"
+              className="px-4 py-2 text-gray-200 font-medium rounded transition duration-300 ease-in-out hover:bg-gray-700 hover:text-white"
             >
               Contact Us
             </a>
@@ -68,6 +68,7 @@ function Header() {
       </nav>
     </header>
   );
+  
 }
 
 export default Header;
