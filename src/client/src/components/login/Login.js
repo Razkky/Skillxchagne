@@ -36,7 +36,7 @@ function Login() {
 
         // Authenticate using Firebase
         try {
-          await signInWithEmailAndPassword(auth, formData.email, formData.password);
+          await handleServerLogin(auth, formData.email, formData.password);
           console.log('Firebase authentication successful');
         } catch (error) {
           console.log('Firebase authentication failed');
@@ -141,7 +141,7 @@ function Login() {
                 placeholder="Email address"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="mt-1 w-full p-3 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                className="mt-1 w-full p-3 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-gray-800"
               />
             </div>
             <div className="mb-6">
@@ -154,7 +154,7 @@ function Login() {
                 placeholder="Password"
                 value={formData.password}
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                className="mt-1 w-full p-3 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                className="mt-1 w-full p-3 border rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm text-gray-800"
               />
             </div>
             <div className="flex items-center justify-between">
