@@ -170,7 +170,7 @@ function Header() {
               Sign Up
             </Link>
             <a
-              href="mailto:example@example.com" // Replace with your contact email address
+              href="mailto:abdulrazakabu667@gmail.com" // Replace with your contact email address
               className="text-gray-200 hover:text-white"
             >
               Contact Us
