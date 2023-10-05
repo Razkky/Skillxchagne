@@ -61,6 +61,26 @@
     <h2>Stakeholders <span style="color: #FFD700;">👥</span></h2>
     <p><strong>Primary:</strong> Mostafa, Mary, Muhammed (Our Fellowship of Developers) <span style="color: #FFD700;">👨‍💻👩‍💻👨‍💻</span></p>
     <p><strong>Secondary:</strong> The wise sages of the ALX software engineering diploma, the eager souls who seek knowledge on our platform. <span style="color: #FFD700;">🧙‍♂️📚🧠</span></p>
+    <h2>About Us <span style="color: #FFD700;">👥</span></h2>
+<p>We are the dreamers, the creators, the innovators, and the learners. At SkillXChange, we believe that knowledge sharing is the key to growth and inspiration.</p>
+<p>Our mission is to create a platform where passionate individuals can connect, collaborate, and empower each other to reach new heights.</p>
+<p>Join us in this journey as we discover new skills, share our expertise, and shape the future together.</p>
+
+<h2>Our Team <span style="color: #FFD700;">👑👨‍💼👩‍💼</span></h2>
+<ul>
+  <li>
+    <strong>Mostafa Hassan</strong> - Software Project Manager
+    <p>As a Software Project Manager, I possess a unique blend of technical expertise, leadership skills, and a strong commitment to delivering exceptional software solutions. With a proven track record of successfully managing complex projects from inception to completion, I bring a strategic vision and a results-oriented approach to every endeavor. My ability to align project goals with business objectives and foster collaboration among cross-functional teams makes me a valuable asset in achieving project success.</p>
+  </li>
+  <li>
+    <strong>Muhammad Abdul Razak</strong> - Backend Software Engineer
+    <p>As a Backend Software Engineer with a passion for building robust and scalable solutions, I thrive in the dynamic world of software development. With a background in computer science and years of experience, I bring a wealth of technical knowledge and expertise to every project I tackle. My dedication to writing efficient, maintainable code and my commitment to staying at the forefront of technology make me a valuable asset to any team.</p>
+  </li>
+  <li>
+    <strong>Mary Sowa</strong> - Frontend Software Engineer
+    <p>As a passionate Frontend Engineer, I thrive on transforming creative concepts into seamless user experiences. With a strong foundation in web technologies and a deep commitment to user-centric design, I bring a blend of technical expertise and creativity to every project. My mission is to craft visually stunning, responsive, and highly performant front-end solutions that engage users and drive business success.</p>
+  </li>
+</ul>
     <h2>Project Manager & Team Roles <span style="color: #FFD700;">👑👨‍💼👩‍💼</span></h2>
     <p><strong>Project Manager:</strong>Mostafa<span style="color: #FFD700;">🕵️‍♂️❓</span></p>
     <p><strong>Mostafa:</strong> AI Powered Fullstack Sorcerer <span style="color: #FFD700;">🧙‍♂️🔮🔌</span><strong>@M0st4f4h4ss4n
